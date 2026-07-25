@@ -1,0 +1,9 @@
+@import url("./styles.css?v=3");
+
+.status-dot {
+    display: none !important;
+}
+
+.eyebrow {
+    visibility: hidden;
+}
