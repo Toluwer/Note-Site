@@ -1,9 +1,49 @@
 const previewFixStylesheet = document.createElement('link');
 previewFixStylesheet.rel = 'stylesheet';
-previewFixStylesheet.href = './preview-fix.css?v=1';
+previewFixStylesheet.href = './preview-fix.css?v=2';
 document.head.appendChild(previewFixStylesheet);
 
 document.addEventListener('DOMContentLoaded', () => {
+    const statusDot = document.querySelector('.status-dot');
+    statusDot?.remove();
+
+    const componentCount = document.querySelector('.hero-meta strong');
+    if (componentCount) componentCount.textContent = '22';
+
+    const componentGrid = document.querySelector('.component-grid');
+    if (componentGrid && !componentGrid.querySelector('[data-advanced-component]')) {
+        const advancedComponents = [
+            {
+                icon: 'gauge',
+                title: 'Progress bar',
+                description: 'Determinate, indeterminate, ranged, and status states.',
+            },
+            {
+                icon: 'table-2',
+                title: 'Data table',
+                description: 'Sorting, selection, pagination, columns, and runtime rows.',
+            },
+            {
+                icon: 'menu',
+                title: 'Context menu',
+                description: 'Anchored or pointer-positioned actions with checkable items.',
+            },
+            {
+                icon: 'search',
+                title: 'Command palette',
+                description: 'Keyboard navigation, filtering, shortcuts, and command execution.',
+            },
+        ];
+
+        advancedComponents.forEach((component) => {
+            const article = document.createElement('article');
+            article.className = 'component-item reveal visible';
+            article.dataset.advancedComponent = component.title;
+            article.innerHTML = `<i data-lucide="${component.icon}"></i><div><h3>${component.title}</h3><p>${component.description}</p></div>`;
+            componentGrid.appendChild(article);
+        });
+    }
+
     if (window.lucide) {
         window.lucide.createIcons();
     }
