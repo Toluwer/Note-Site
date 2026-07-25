@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://toluwer.github.io/Note-Site/sitemap.xml
