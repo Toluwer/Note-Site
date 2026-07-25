@@ -4,8 +4,11 @@ previewFixStylesheet.href = './preview-fix.css?v=2';
 document.head.appendChild(previewFixStylesheet);
 
 document.addEventListener('DOMContentLoaded', () => {
-    const statusDot = document.querySelector('.status-dot');
-    statusDot?.remove();
+    const releaseLabel = document.querySelector('.eyebrow');
+    if (releaseLabel) {
+        releaseLabel.textContent = 'Current release · v0.3.0';
+        releaseLabel.style.visibility = 'visible';
+    }
 
     const componentCount = document.querySelector('.hero-meta strong');
     if (componentCount) componentCount.textContent = '22';
