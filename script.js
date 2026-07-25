@@ -1,3 +1,8 @@
+const previewFixStylesheet = document.createElement('link');
+previewFixStylesheet.rel = 'stylesheet';
+previewFixStylesheet.href = './preview-fix.css?v=1';
+document.head.appendChild(previewFixStylesheet);
+
 document.addEventListener('DOMContentLoaded', () => {
     if (window.lucide) {
         window.lucide.createIcons();
