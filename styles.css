@@ -7,3 +7,11 @@
 .eyebrow {
     visibility: hidden;
 }
+
+#preview .section-heading > p {
+    display: none;
+}
+
+#preview .section-heading {
+    grid-template-columns: 1fr;
+}
