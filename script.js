@@ -6,7 +6,7 @@ document.head.appendChild(previewFixStylesheet);
 document.addEventListener('DOMContentLoaded', () => {
     const releaseLabel = document.querySelector('.eyebrow');
     if (releaseLabel) {
-        releaseLabel.textContent = 'Current release · v0.3.0';
+        releaseLabel.textContent = 'Current release · v0.3.1';
         releaseLabel.style.visibility = 'visible';
     }
 
