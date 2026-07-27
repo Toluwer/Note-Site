@@ -6,7 +6,7 @@ document.head.appendChild(previewFixStylesheet);
 document.addEventListener('DOMContentLoaded', () => {
     const releaseLabel = document.querySelector('.eyebrow');
     if (releaseLabel) {
-        releaseLabel.textContent = 'Current release · v0.4.0';
+        releaseLabel.textContent = 'Current release · v0.5.0';
         releaseLabel.style.visibility = 'visible';
     }
 
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const structuredWindowDescription = document.querySelector('.feature-card-large p');
     if (structuredWindowDescription) {
-        structuredWindowDescription.textContent = 'Draggable and resizable windows, normal or split tabs, live search, collapsible sections, responsive component rows, viewport clamping, minimize and restore behavior, and clean destruction.';
+        structuredWindowDescription.textContent = 'Draggable and resizable windows, normal or split tabs, live search, collapsible sections, responsive component rows, 46 built-in fixed themes, viewport clamping, minimize and restore behavior, and clean destruction.';
     }
 
     const featureLayout = document.querySelector('.feature-layout');
@@ -61,12 +61,20 @@ document.addEventListener('DOMContentLoaded', () => {
         featureLayout.appendChild(splitFeature);
     }
 
+    if (featureLayout && !featureLayout.querySelector('[data-theme-presets]')) {
+        const themeFeature = document.createElement('article');
+        themeFeature.className = 'feature-card reveal visible';
+        themeFeature.dataset.themePresets = 'true';
+        themeFeature.innerHTML = '<div class="feature-icon"><i data-lucide="palette"></i></div><h3>46 built-in themes</h3><p>Choose complete fixed palettes such as Black, Red, Orange, Gold, Emerald, Cyan, Blue, Purple, Pink, Rose, Brown, and Copper. Themes never insert controls automatically, and the color picker remains unrelated to interface styling.</p>';
+        featureLayout.appendChild(themeFeature);
+    }
+
     const windowComponent = Array.from(document.querySelectorAll('.component-item')).find(
         (item) => item.querySelector('h3')?.textContent === 'Window'
     );
     const windowDescription = windowComponent?.querySelector('p');
     if (windowDescription) {
-        windowDescription.textContent = 'Drag, resize, minimize, search, themes, config, split tabs, and responsive narrow layouts.';
+        windowDescription.textContent = 'Drag, resize, minimize, search, fixed themes, config, split tabs, and responsive narrow layouts.';
     }
 
     if (window.lucide) {
