@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const structuredWindowDescription = document.querySelector('.feature-card-large p');
     if (structuredWindowDescription) {
-        structuredWindowDescription.textContent = 'Draggable and resizable windows, tabs with normal single-column or optional left/right split layouts, live search, collapsible sections, responsive clamping, minimize and restore behavior, and clean destruction.';
+        structuredWindowDescription.textContent = 'Draggable and resizable windows, normal or split tabs, live search, collapsible sections, responsive component rows, viewport clamping, minimize and restore behavior, and clean destruction.';
     }
 
     const featureLayout = document.querySelector('.feature-layout');
@@ -57,14 +57,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const splitFeature = document.createElement('article');
         splitFeature.className = 'feature-card reveal visible';
         splitFeature.dataset.splitLayout = 'true';
-        splitFeature.innerHTML = '<div class="feature-icon"><i data-lucide="columns-2"></i></div><h3>Optional split tab layouts</h3><p>Keep the original full-width section flow or opt into independent left and right columns. Split mode can remain active in narrow windows, while responsive stacking is available through an explicit breakpoint.</p>';
+        splitFeature.innerHTML = '<div class="feature-icon"><i data-lucide="columns-2"></i></div><h3>Optional split tab layouts</h3><p>Keep the original full-width flow or use independent left and right columns. Narrow split columns remain available, while labels, actions, keybinds, toggles, and color controls reflow before they can overlap.</p>';
         featureLayout.appendChild(splitFeature);
     }
 
-    const windowComponent = Array.from(document.querySelectorAll('.component-item')).find((item) => item.querySelector('h3')?.textContent === 'Window');
+    const windowComponent = Array.from(document.querySelectorAll('.component-item')).find(
+        (item) => item.querySelector('h3')?.textContent === 'Window'
+    );
     const windowDescription = windowComponent?.querySelector('p');
     if (windowDescription) {
-        windowDescription.textContent = 'Drag, resize, minimize, search, themes, config, and split tabs.';
+        windowDescription.textContent = 'Drag, resize, minimize, search, themes, config, split tabs, and responsive narrow layouts.';
     }
 
     if (window.lucide) {
@@ -210,11 +212,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     previewDialog?.addEventListener('click', (event) => {
         const bounds = previewDialog.getBoundingClientRect();
-        const outside = event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom;
+        const outside = event.clientX < bounds.left
+            || event.clientX > bounds.right
+            || event.clientY < bounds.top
+            || event.clientY > bounds.bottom;
         if (outside) closePreview();
     });
 
-    previewDialog?.addEventListener('close', () => document.body.classList.remove('dialog-open'));
+    previewDialog?.addEventListener('close', () => {
+        document.body.classList.remove('dialog-open');
+    });
 
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape' && previewDialog?.open) closePreview();
