@@ -6,7 +6,7 @@ document.head.appendChild(previewFixStylesheet);
 document.addEventListener('DOMContentLoaded', () => {
     const releaseLabel = document.querySelector('.eyebrow');
     if (releaseLabel) {
-        releaseLabel.textContent = 'Current release · v0.3.1';
+        releaseLabel.textContent = 'Current release · v0.4.0';
         releaseLabel.style.visibility = 'visible';
     }
 
@@ -45,6 +45,26 @@ document.addEventListener('DOMContentLoaded', () => {
             article.innerHTML = `<i data-lucide="${component.icon}"></i><div><h3>${component.title}</h3><p>${component.description}</p></div>`;
             componentGrid.appendChild(article);
         });
+    }
+
+    const structuredWindowDescription = document.querySelector('.feature-card-large p');
+    if (structuredWindowDescription) {
+        structuredWindowDescription.textContent = 'Draggable and resizable windows, tabs with normal single-column or optional left/right split layouts, live search, collapsible sections, responsive clamping, minimize and restore behavior, and clean destruction.';
+    }
+
+    const featureLayout = document.querySelector('.feature-layout');
+    if (featureLayout && !featureLayout.querySelector('[data-split-layout]')) {
+        const splitFeature = document.createElement('article');
+        splitFeature.className = 'feature-card reveal visible';
+        splitFeature.dataset.splitLayout = 'true';
+        splitFeature.innerHTML = '<div class="feature-icon"><i data-lucide="columns-2"></i></div><h3>Optional split tab layouts</h3><p>Keep the original full-width section flow or opt into independent left and right columns. Split mode can remain active in narrow windows, while responsive stacking is available through an explicit breakpoint.</p>';
+        featureLayout.appendChild(splitFeature);
+    }
+
+    const windowComponent = Array.from(document.querySelectorAll('.component-item')).find((item) => item.querySelector('h3')?.textContent === 'Window');
+    const windowDescription = windowComponent?.querySelector('p');
+    if (windowDescription) {
+        windowDescription.textContent = 'Drag, resize, minimize, search, themes, config, and split tabs.';
     }
 
     if (window.lucide) {
